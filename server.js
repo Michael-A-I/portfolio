@@ -1,12 +1,17 @@
-// .env setup
-require('dotenv').config();
+if(process.env.NODE_ENV !== 'production'){
+    // .env setup
+    require('dotenv').config();
+}
 
 const express   = require('express');
 const articlesRouter  = require('./routes/articles');
+const adminRouter = require('./routes/admin');
+const authRouter = require('./routes/login');
 const app       = express();
 const port      = 7777   
 const Article   = require('./models/articleSchema');
 const methodOverride = require('method-override');
+
 
 // set up DB
 const mongoose       = require('mongoose')
@@ -20,7 +25,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cl
 // view engine ejs
 app.set('view engine', 'ejs')
 // url encoder
-// ?
+// take form input and access data via req method. 
 app.use(express.urlencoded({extended:false}));
 //method override -> delete items
 app.use(methodOverride('_method'))
@@ -34,8 +39,10 @@ app.get('/', async(req, res)=>{
     res.render('articles/index', {articles:  articles});
     // TODO:find way to handle / and /articles/index and /articles 
 });
-//- /articles -> routes.
-app.use("/articles", articlesRouter)
+//- routes.
+app.use('/admin', adminRouter);
+app.use('/login', authRouter )
+app.use("/articles", articlesRouter);
 
 //port
 app.listen(port)
