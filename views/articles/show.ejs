@@ -9,6 +9,22 @@
 
 </head>
 <body>
+
+    <nav class="navbar">
+        <a class="navbar-brand" href="https://github.com/Michael-A-I" >
+            <img src="images/logo.png" width="40" height="40"  class="d-inline-block align-top avatar" alt="">
+            Michael A_____I
+        </a>
+    
+        <div class="navigation">
+          <div class="navigation--item-button">
+            <% navigation.forEach( nav => {%> 
+                <a href=<%=nav.link%>  class="navigation--item-style" ><%=nav.title %> </a>  
+            <% })%> 
+           </div>
+        </di
+
+
 <div class="container">
     <!-- content -->
     <!-- render article title -->
@@ -35,6 +51,9 @@
             <!-- the < % - will convert raw html, rather than conver to string-->
             <%- article.sanitizedHtml %>
         </div> 
+
+
+        
 </div>
 
 </body>

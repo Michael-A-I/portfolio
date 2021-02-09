@@ -13,7 +13,7 @@ const blogRouter        = require('./routes/blog');
 // Router -------------
 
 const app               = express();
-const port              = 7777;
+const port              = 7778;
 // DB -----------------    
 const Article           = require('./models/articleSchema');
 
@@ -44,12 +44,19 @@ app.use(express.urlencoded({extended:false}));
 // Allows put and delete methods
 // =============================================================================
 app.use(methodOverride('_method'));
-
+// local variables avail... to all routes
+// app.use(function(req, res,next){
+//     res.locals = {
+//         link:"https://github.com/Michael-A-I"
+//     }
+//     return next();
+// });
 // assets folder
 app.use(express.static(__dirname + '/assets'));
 // =============================================================================
 // Routes
 // =============================================================================
+
 app.use('/',            navRouter);
 app.use('/blog',        blogRouter );
 app.use('/admin',       adminRouter);

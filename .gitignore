@@ -6,3 +6,4 @@
 .env
 
 # End of https://www.toptal.com/developers/gitignore/api/dotenv
+node_modules

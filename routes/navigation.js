@@ -2,18 +2,26 @@
 const  express          = require('express');
 const router            = express.Router();
 
+const nav               = [
+     {title:"About",link:'/about'},
+     {title:"Blog",link:'/blog'},
+     {title:"Github",link:'/projects'},
+     {title:"Resume",link:'/resume'}
+]
 
 router.get('/', (req,res) =>{
-    const nav               = [
-         {title:"mySelf",link:'/about'},
-         {title:"myBlog",link:'/blog'},
-         {title:"myProjects",link:'/projects'},
-]
 // const carousel = document.querySelector('.carousel');
-
     res.render('nav/index', {navigation: nav})
 });
 
+router.get('/about', (req,res) => {
+    res.render('nav/about', {navigation:    nav})
+});
+
+router.get('/projects', (req,res)=>{
+    console.log(nav)
+    res.render("nav/github",{navigation:    nav})
+});
     
 
 module.exports = router;
